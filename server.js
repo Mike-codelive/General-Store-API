@@ -1,10 +1,13 @@
 const express = require('express')
+const connectDB = require('./config/db')
 
 const app = express()
 
 app.get('/', (req, res) => {
 	res.json({ msg: 'welcome to my family store API...'})
 })
+
+connectDB()
 
 // init middleware
 app.use(express.json({ extended: false }));
