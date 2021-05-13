@@ -1,9 +1,9 @@
-const express = require('express');
-const router = express.Router();
-const auth = require('../middleware/auth');
+const express = require('express')
+const router = express.Router()
+const auth = require('../middleware/auth')
 // const User = require('../models/User');
-const Products = require('../models/product');
-const { check, validationResult } = require('express-validator');
+const Products = require('../models/product')
+const { check, validationResult } = require('express-validator')
 
 // @route GET api/products
 // @desc  Get all products
@@ -110,11 +110,6 @@ router.delete('/:id', auth, async (req, res) => {
 
     //if the product isnt found
     if (!product) return res.status(404).json({ msg: 'product not found' })
-
-    // // make sure user owns product
-    // if (product.user.toString() !== req.user.id) {
-    //   return res.status(401).json({ msg: 'Not authorised' });
-    // }
 
     //dont use delete method as its deprecated
     await Products.findByIdAndRemove(req.params.id)
